@@ -1,0 +1,15 @@
+-- All messages in any conversation sent by the user with user ID 4
+
+SELECT * FROM message WHERE userId = 4;
+
+-- All messages in conversation where users 1 and 3 are participating (other users could also be participating)
+
+SELECT * FROM message WHERE conversationId IN (
+    SELECT conversationId
+    FROM conversation
+    WHERE userId IN (1, 3)
+    GROUP BY conversationId
+);
+-- All messages in any conversation where the message contents include the word "cake"
+
+SELECT * FROM message WHERE  txt LIKE '%cake%';
