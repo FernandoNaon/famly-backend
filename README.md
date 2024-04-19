@@ -40,9 +40,9 @@ curl -X GET localhost:3000/messages-by-user/3
 
 ```
 
-http://localhost:3000/messages-by-participants?participants=1,3
+http://localhost:3000/messages-by-users/1/3
 
-curl -X GET localhost:3000/messages-by-participants?participants=1,3
+curl -X GET llocalhost:3000/messages-by-users/1/3
 
 ```
 
