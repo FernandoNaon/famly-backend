@@ -4,17 +4,13 @@ SELECT * FROM message WHERE userId = 4;
 
 -- All messages in conversation where users 1 and 3 are participating (other users could also be participating)
 
-SELECT f.id, f.userId, f.conversationId, f.txt
-FROM message f
-INNER JOIN conversation c ON f.conversationId = s.id
-WHERE EXISTS (
-    SELECT 1 FROM conversation c1
-    WHERE c1.id = s.id AND c1.userId = 1
-)
-AND EXISTS (
-    SELECT 1 FROM conversation c2
-    WHERE c2.id = s.id AND c2.userId = 3
+SELECT * FROM message 
+    WHERE conversationId IN (
+    SELECT DISTINCT conversationId
+    FROM message
+    WHERE userId = 1 OR userId = 3
 );
+
 -- All messages in any conversation where the message contents include the word "cake"
 
 SELECT * FROM message WHERE  txt LIKE '%cake%';
